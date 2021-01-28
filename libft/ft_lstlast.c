@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpaci <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 18:14:16 by mpaci             #+#    #+#             */
-/*   Updated: 2021/01/12 18:14:21 by mpaci            ###   ########.fr       */
+/*   Created: 2021/01/28 19:29:36 by mpaci             #+#    #+#             */
+/*   Updated: 2021/01/28 19:29:38 by mpaci            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t srclen;
-	size_t dstlen;
-
-	srclen = ft_strlen(src);
-	dstlen = ft_strlen(dst);
-	if (dstlen + 1 < dstsize)
-	{
-		ft_strlcpy(&dst[dstlen], src, (dstsize - dstlen));
-		dst[dstsize - 1] = '\0';
-	}
-	if (dstsize < dstlen)
-		return (dstsize + srclen);
-	else
-		return (dstlen + srclen);
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

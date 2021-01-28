@@ -22,6 +22,8 @@ test: lib clean
 	@./test.out
 	@rm -f test.out
 
+bonus: objects
+	
 BSD = -lbsd
 ltest: lib clean
 	@$(CC) $(CFLAGS) $(DRV) $(BSD) libft.a -o test.out

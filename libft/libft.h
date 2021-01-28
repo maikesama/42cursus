@@ -18,6 +18,11 @@
 
 typedef unsigned long int size_t;
 typedef unsigned char t_byte;
+typedef struct		s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 
 //first part
@@ -40,7 +45,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
-char 	*ft_strnstr(const char *big, const char *little, size_t n);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *str, int c);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
@@ -56,8 +61,18 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa(int n);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
-//ft_bonus
+//bonus part
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+//ft_mybonus
 int		ft_isspace_bonus(char c);
 int		ft_srcchar_bonus(char *str, char c);
+size_t	ft_min_bonus(const size_t s1, const size_t s2);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
+
 #endif

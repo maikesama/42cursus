@@ -18,11 +18,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!(s1) || !(s2))
 		return (0);
-	if (!(ptr = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	if (!(ptr = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char))))
 		return (0);
-	ptr = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	ft_memmove(ptr, s1, ft_strlen(s1));
 	ft_memmove(&ptr[ft_strlen(s1)], s2, ft_strlen(s2));
-	ptr[ft_strlen(s1) + ft_strlen(s2)] = '\0';
 	return (ptr);
 }
