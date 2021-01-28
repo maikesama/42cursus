@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_srcchar_bonus(char *str, char c)
 {
 	while (str)

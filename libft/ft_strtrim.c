@@ -5,51 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpaci <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 16:05:17 by mpaci             #+#    #+#             */
-/*   Updated: 2021/01/26 16:05:19 by mpaci            ###   ########.fr       */
+/*   Created: 2021/01/27 15:13:51 by mpaci             #+#    #+#             */
+/*   Updated: 2021/01/27 15:13:53 by mpaci            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_start(char *s1, char *set)
+static int		is_in_charset(char c, char *charset)
 {
-	while (ft_srcchar_bonus(set, *s1))
+	size_t	i;
+
+	i = 0;
+	while (charset[i])
 	{
-		s1++;
+		if (charset[i] == c)
+			return (1);
+		i++;
 	}
-	return (s1);
+	return (0);
 }
 
-char	*ft_end(char *s1, char *set)
+char			*ft_strtrim(const char *s1, const char *s2)
 {
-	while (ft_srcchar_bonus(set, *s1))
-	{
-		s1--;
-	}
-	return (s1 + 1);
-}
+	char	*s;
+	size_t	start;
+	size_t	end;
+	size_t	i;
 
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	char	*ptr;
-	char	*start;
-	char	*end;
-	int		size;
-
-	if (!(s1) || !(set))
-		return (0);
-	start = ft_start((char *)s1, (char *)set);
-	end = ft_end((char *)&s1[ft_strlen(s1) - 1], (char *)set);
-	size = end - start;
-	if (start >= &s1[ft_strlen(s1)])
-	{
-		if (!(ptr = ft_calloc(1, sizeof(*ptr))))
-			return (0);
-		return (ptr);
-	}
-	if (!(ptr = ft_calloc(size, sizeof(*ptr))))
-		return (0);
-	ft_memcpy(ptr, start, size);
-	return (ptr);
+	if (!s1)
+		return (NULL);
+	start = 0;
+	end = ft_strlen((char *)s1);
+	while (s1[start] && is_in_charset(s1[start], (char *)s2))
+		start++;
+	while (end > start && is_in_charset(s1[end - 1], (char *)s2))
+		end--;
+	if (!(s = (char *)malloc((end - start + 1) * sizeof(char))))
+		return (NULL);
+	i = 0;
+	while (start < end)
+		s[i++] = s1[start++];
+	s[i] = '\0';
+	return (s);
 }
