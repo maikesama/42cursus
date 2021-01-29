@@ -14,7 +14,7 @@
 
 static int		is_in_charset(char c, char *charset)
 {
-	size_t	i;
+	t_size	i;
 
 	i = 0;
 	while (charset[i])
@@ -29,9 +29,9 @@ static int		is_in_charset(char c, char *charset)
 char			*ft_strtrim(const char *s1, const char *s2)
 {
 	char	*s;
-	size_t	start;
-	size_t	end;
-	size_t	i;
+	t_size	start;
+	t_size	end;
+	t_size	i;
 
 	if (!s1)
 		return (NULL);

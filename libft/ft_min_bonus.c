@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_min_bonus(const size_t s1, const size_t s2)
+t_size	ft_min_bonus(const t_size s1, const t_size s2)
 {
 	if (s1 < s2)
 		return (s1);

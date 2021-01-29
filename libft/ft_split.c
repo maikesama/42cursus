@@ -14,7 +14,7 @@
 
 int				ft_count_rows(char const *s, char c)
 {
-	size_t		i;
+	t_size		i;
 
 	i = 0;
 	while (*s)
@@ -50,8 +50,8 @@ char			**ft_split(char const *s, char c)
 {
 	char		**res;
 	char		*start;
-	size_t		i;
-	size_t		len;
+	t_size		i;
+	t_size		len;
 
 	if (!s || !(res = (char **)ft_calloc(ft_count_rows(s, c), sizeof(char *))))
 		return (0);

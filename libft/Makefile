@@ -1,47 +1,27 @@
 CC = gcc
+
 CFLAGS = -Wall -Werror -Wextra
-SRC = ft_*.c
-OBJ = *.o
-DRV = libft_driver.c
 
-all: lib clean
+SRCS = ft_*.c
 
-re: clean all
+OBJS = ${SRCS:.c=.o}
 
-objects:
-	@$(CC) $(CFLAGS) $(SRC) -c
+RM = rm -f
+
+.c.o:
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+
+${SRCS}:	${OBJS}
+	@${CC} -o ${SRCS} ${OBJS}
+
+all:	${SRCS}
 
 clean:
-	@rm -rf $(OBJ)
+	@${RM} ${OBJS}
 
-lib: objects
-	@ar -rcs libft.a $(OBJ)
+fclean:	clean
+	@${RM}	${SRCS}
 
-test: lib clean
-	@$(CC) $(CFLAGS) $(DRV) libft.a -o test.out
-	@./test.out
-	@rm -f test.out
+re:		fclean all
 
-bonus: objects
-	
-BSD = -lbsd
-ltest: lib clean
-	@$(CC) $(CFLAGS) $(DRV) $(BSD) libft.a -o test.out
-	@./test.out
-	@rm -f test.out
-
-DBG = -g -fsanitize=address
-memtest: lib clean
-	@$(CC) $(CFLAGS) $(DRV) $(DBG) libft.a -o test.out
-	@./test.out
-	@rm -f test.out
-
-lmemtest: lib clean
-	@$(CC) $(CFLAGS) $(DRV) $(DBG) $(BSD) libft.a -o test.out ; ASAN_OPTIONS=detect_leaks=1
-	@./test.out
-	@rm -f test.out
-
-valgrind: lib clean
-	@$(CC) $(CFLAGS) -g $(DRV) $(BSD) libft.a -o test.out
-	@valgrind --track-origins=yes -s ./test.out
-	@rm -f test.out
+.PHONY:	all clean fclean re
