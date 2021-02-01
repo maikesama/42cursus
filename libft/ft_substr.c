@@ -12,6 +12,14 @@
 
 #include "libft.h"
 
+t_size	ft_min_bonus(const t_size s1, const t_size s2)
+{
+	if (s1 < s2)
+		return (s1);
+	else
+		return (s2);
+}
+
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char *ptr;

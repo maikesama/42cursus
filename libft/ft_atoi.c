@@ -5,12 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpaci <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 14:32:15 by mpaci             #+#    #+#             */
-/*   Updated: 2021/01/12 14:32:18 by mpaci            ###   ########.fr       */
+/*   Created: 2021/02/01 14:42:47 by mpaci             #+#    #+#             */
+/*   Updated: 2021/02/01 14:42:50 by mpaci            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int		ft_isspace_bonus(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	return (0);
+}
 
 int		ft_atoi(const char *str)
 {
